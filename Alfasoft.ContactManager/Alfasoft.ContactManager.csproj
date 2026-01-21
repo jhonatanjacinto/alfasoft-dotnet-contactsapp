@@ -19,7 +19,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Contracts\" />
+      <Folder Include="Contracts\User\" />
       <Folder Include="Pages\Shared\Partials\" />
       <Folder Include="wwwroot\" />
     </ItemGroup>

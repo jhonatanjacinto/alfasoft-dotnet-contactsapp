@@ -28,6 +28,14 @@ public class AppDbContext(DbContextOptions<AppDbContext> options, IWebHostEnviro
             entity.Property(e => e.Status).HasConversion(
                 status => status.ToString(), 
                 value => Enum.Parse<Enums.ContactStatus>(value));
+            
+            // Seed some sample contacts
+            entity.HasData(new List<Contact>
+            {
+                new() { Id = 1, Name = "John Doe", Email = "johndoe@gmail.com", Phone = "123456789", Status = Enums.ContactStatus.Active },
+                new() { Id = 2, Name = "Jane Smith", Email = "janesmith@gmail.com", Phone = "333666444", Status = Enums.ContactStatus.Active },
+                new() { Id = 3, Name = "Alice Johnson", Email = "alicejohnson@outlook.com", Phone = "111555777", Status = Enums.ContactStatus.Active }
+            });
         });
 
         modelBuilder.Entity<User>(entity =>
