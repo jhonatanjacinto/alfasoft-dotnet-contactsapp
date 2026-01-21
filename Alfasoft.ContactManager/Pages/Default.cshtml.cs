@@ -12,7 +12,6 @@ public class Default(AppDbContext dbContext) : PageModel
     
     public async Task OnGetAsync()
     {
-        ViewData["Title"] = "Contacts List";
         Contacts = await dbContext.Contacts.Where(c => c.Status != ContactStatus.Deleted).ToListAsync();
     }
 }

@@ -1,6 +1,7 @@
 @page "/"
 @model Alfasoft.ContactManager.Pages.Default
 @{
+    ViewData["Title"] = "Contacts List";
     var isUserAuthenticated = User.Identity is { IsAuthenticated: true };
 }
 
