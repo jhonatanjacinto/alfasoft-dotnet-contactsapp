@@ -36,7 +36,7 @@ public class Login(AppDbContext dbContext) : PageModel
         }
         
         await SignInUserAsync(existingUser);
-        return (string.IsNullOrEmpty(ReturnUrl)) 
+        return (string.IsNullOrEmpty(ReturnUrl) || ReturnUrl.Contains("/delete")) 
             ? RedirectToPage("Default")
             : Redirect(ReturnUrl);
     }

@@ -1,6 +1,8 @@
 using Alfasoft.ContactManager.Database;
 using Alfasoft.ContactManager.Enums;
 using Alfasoft.ContactManager.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 

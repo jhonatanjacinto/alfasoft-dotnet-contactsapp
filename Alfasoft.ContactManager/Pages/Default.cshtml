@@ -9,9 +9,16 @@
     @if (isUserAuthenticated)
     {
         <div class="p-6 bg-gray-50 border-b">
-            <button class="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-lg transition">
+            <a asp-page="AddContact" class="bg-green-500 hover:bg-green-600 text-white px-6 py-2 rounded-lg transition">
                 + Add New Contact
-            </button>
+            </a>
+        </div>
+    }
+    
+    @if (TempData["SuccessMessage"] is not null)
+    {
+        <div class="p-4 bg-green-100 border border-green-400 text-green-700 my-4 mx-6">
+            @TempData["SuccessMessage"]
         </div>
     }
 
@@ -57,9 +64,9 @@
                                    class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-1 rounded mr-2 transition">
                                     Edit
                                 </a>
-                                <button class="bg-red-500 hover:bg-red-600 text-white px-4 py-1 rounded transition">
+                                <a asp-page="DeleteContact" asp-route-id="@contact.Id" class="bg-red-500 hover:bg-red-600 text-white px-4 py-1 rounded transition">
                                     Delete
-                                </button>
+                                </a>
                             </td>
                         }
                     </tr>
