@@ -23,8 +23,12 @@ public class AppDbContext(DbContextOptions<AppDbContext> options, IWebHostEnviro
     {
         modelBuilder.Entity<Contact>(entity =>
         {
-            entity.HasIndex(e => e.Email).IsUnique();
-            entity.HasIndex(e => e.Phone).IsUnique();
+            // Remove uniqueness constraints on Email and Phone given the fact that
+            // deletes are soft and we might have multiple "deleted" contacts with the same email/phone.
+            
+            // entity.HasIndex(e => e.Email).IsUnique();
+            // entity.HasIndex(e => e.Phone).IsUnique();
+            
             entity.Property(e => e.Status).HasConversion(
                 status => status.ToString(), 
                 value => Enum.Parse<Enums.ContactStatus>(value));

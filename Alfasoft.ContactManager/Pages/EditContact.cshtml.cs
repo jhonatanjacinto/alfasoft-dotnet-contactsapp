@@ -46,7 +46,8 @@ public class EditContact(AppDbContext dbContext) : PageModel
         contact.Email = UpdateContactData.Email;
         contact.Phone = UpdateContactData.PhoneNumber;
         
-        if (await dbContext.Contacts.AnyAsync(c => (c.Email == contact.Email || c.Phone == contact.Phone) && c.Id != contact.Id))
+        if (await dbContext.Contacts.AnyAsync(c 
+                => (c.Email == contact.Email || c.Phone == contact.Phone) && c.Id != contact.Id && c.Status != Enums.ContactStatus.Deleted))
         {
             ModelState.AddModelError(string.Empty, "Another contact with the same email or phone number already exists.");
             return Page();

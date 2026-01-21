@@ -1,0 +1,23 @@
+@page "/errors/{code:int?}"
+@model Alfasoft.ContactManager.Pages.Error
+
+<div class="bg-white shadow-md rounded-lg p-6 max-w-2xl mx-auto">
+    <h2 class="text-2xl font-bold text-gray-800 mb-6">Error</h2>
+
+    @if (Model.ErrorCode.HasValue)
+    {
+        <div class="text-red-600 mb-4 bg-red-100 border-red-600 p-4">
+            <p>An error occurred. Error code: @Model.ErrorCode</p>
+        </div>
+    }
+    else
+    {
+        <div class="text-red-600 mb-4 bg-red-100 border-red-600 p-4">
+            <p>An unexpected error occurred.</p>
+        </div>
+    }
+
+    <a asp-page="Default" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg transition">
+        Return to Home
+    </a>
+</div>

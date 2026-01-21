@@ -1,5 +1,6 @@
 using Alfasoft.ContactManager.Contracts.Contact;
 using Alfasoft.ContactManager.Database;
+using Alfasoft.ContactManager.Enums;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -21,7 +22,8 @@ public class AddContact(AppDbContext dbContext) : PageModel
         if (!ModelState.IsValid || CreateContactData is null)
             return Page();
         
-        if (await dbContext.Contacts.AnyAsync(c => c.Email == CreateContactData.Email || c.Phone == CreateContactData.PhoneNumber))
+        if (await dbContext.Contacts.AnyAsync(c 
+                => (c.Email == CreateContactData.Email || c.Phone == CreateContactData.PhoneNumber) && c.Status != ContactStatus.Deleted))
         {
             ModelState.AddModelError(string.Empty, "A contact with the same email or phone number already exists.");
             return Page();

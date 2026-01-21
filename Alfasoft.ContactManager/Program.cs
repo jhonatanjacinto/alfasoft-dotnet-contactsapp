@@ -15,6 +15,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 var app = builder.Build();
 
 app.RunInitialMigrations();
+app.UseExceptionHandler("/errors/500");
+app.UseStatusCodePagesWithReExecute("/errors/{0}");
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
