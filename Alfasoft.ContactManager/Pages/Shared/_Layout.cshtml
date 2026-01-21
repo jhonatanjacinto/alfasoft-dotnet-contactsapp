@@ -1,11 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewData["Title"]</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-gray-100 min-h-screen">
+<div id="app" class="container mx-auto px-4 py-8">
+    
+    <!-- Header -->
+    <header class="bg-white shadow-md rounded-lg p-6 mb-8">
+        <div class="flex justify-between items-center">
+            <h1 class="text-3xl font-bold text-gray-800">Contacts Manager</h1>
+            <div id="authSection">
+                @if (User.Identity is { IsAuthenticated: false })
+                {
+                    <button class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg transition">
+                        Login to Manage Contacts
+                    </button>
+                }
+                else
+                {
+                    <button class="bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-lg transition">
+                        Logout
+                    </button>
+                }
+            </div>
+        </div>
+    </header>
 
-@RenderBody()
-
+    <!-- Main Content -->
+    <main id="mainContent">
+        @RenderBody()
+    </main>
+    
+</div>
 </body>
 </html>

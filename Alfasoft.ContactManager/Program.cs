@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
+builder.Services.AddAuthenticationPolicies();
+builder.Services.AddAuthorization();
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
     var connectionString = builder.Configuration.GetConnectionString("MySqlConnection") ?? throw new InvalidOperationException("Connection string to database not found.");
@@ -14,6 +16,8 @@ var app = builder.Build();
 
 app.RunInitialMigrations();
 app.UseRouting();
+app.UseAuthentication();
+app.UseAuthorization();
 app.UseStaticFiles();
 app.MapRazorPages();
 app.Run();
