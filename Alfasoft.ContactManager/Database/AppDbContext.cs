@@ -3,21 +3,22 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Alfasoft.ContactManager.Database;
 
-public class AppDbContext(DbContextOptions<AppDbContext> options, IWebHostEnvironment env) : DbContext(options)
+public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
 {
     public DbSet<Contact> Contacts { get; set; }
     public DbSet<User> Users { get; set; }
 
     // Configuration for logging and detailed errors only in development environment
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        if (env.IsDevelopment())
-        {
-            optionsBuilder.LogTo(Console.WriteLine, LogLevel.Information)
-                .EnableSensitiveDataLogging()
-                .EnableDetailedErrors();
-        }
-    }
+    // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    // {
+    //     // Removed for deployment
+    //     if (env.IsDevelopment())
+    //     {
+    //         optionsBuilder.LogTo(Console.WriteLine, LogLevel.Information)
+    //             .EnableSensitiveDataLogging()
+    //             .EnableDetailedErrors();
+    //     }
+    // }
     
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
